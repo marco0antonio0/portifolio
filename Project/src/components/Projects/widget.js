@@ -40,7 +40,7 @@ export default function WidgetProjects({ data }) {
             btnDisable ? style.btnDisable : false
           }`}
           onClick={() => {
-            if (data.length >= count) {
+            if (data.length > count) {
               setbtnDisable(true);
             }
             setcount((e) => {
