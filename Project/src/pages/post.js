@@ -1,16 +1,11 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import WidgetAppBar from "@/components/appBar/widget";
-import WidgetCardInfo from "@/components/CardInfo/widget";
-import WidgetTopics from "@/components/Topics/widget";
-import WidgetProjects from "@/components/Projects/widget";
-import WidgetBottomBar from "@/components/Bottombar/widget";
-import WidgetPost from "@/components/post/widget";
+import WidgetAppBar from "./../components/appBar/widget";
+import WidgetTopics from "./../components/Topics/widget";
+import WidgetBottomBar from "./../components/Bottombar/widget";
+import WidgetPost from "./../components/post/widget";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import WidgetNotFound from "@/components/notFound/widget";
+import WidgetNotFound from "./../components/notFound/widget";
 
 export default function Home() {
   const [data, setdata] = useState();
@@ -20,7 +15,7 @@ export default function Home() {
   const { v } = r.query;
   useEffect(() => {
     if (!load && v) {
-      fetch(`http://localhost:3000/api/getonedata?titulo=${v}`)
+      fetch(`https://api-portifolio.nova-work/api/getonedata?titulo=${v}`)
         .then((e) => e.json())
         .then((e) => {
           setload(true);

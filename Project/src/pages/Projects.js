@@ -1,9 +1,9 @@
 import Head from "next/head";
-import WidgetAppBar from "@/components/appBar/widget";
-import WidgetCardInfo from "@/components/CardInfo/widget";
-import WidgetTopics from "@/components/Topics/widget";
-import WidgetProjects from "@/components/Projects/widget";
-import WidgetBottomBar from "@/components/Bottombar/widget";
+import WidgetAppBar from "./../components/appBar/widget";
+import WidgetCardInfo from "./../components/CardInfo/widget";
+import WidgetTopics from "./../components/Topics/widget";
+import WidgetProjects from "./../components/Projects/widget";
+import WidgetBottomBar from "./../components/Bottombar/widget";
 
 export default function Home() {
   return (

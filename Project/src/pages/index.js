@@ -1,12 +1,10 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
-import WidgetAppBar from "@/components/appBar/widget";
-import WidgetCardInfo from "@/components/CardInfo/widget";
-import WidgetTopics from "@/components/Topics/widget";
-import WidgetProjects from "@/components/Projects/widget";
-import WidgetBottomBar from "@/components/Bottombar/widget";
+import WidgetAppBar from "./../components/appBar/widget";
+import WidgetCardInfo from "./../components/CardInfo/widget";
+import WidgetTopics from "./../components/Topics/widget";
+import WidgetProjects from "./../components/Projects/widget";
+import WidgetBottomBar from "./../components/Bottombar/widget";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
@@ -18,7 +16,7 @@ export default function Home() {
   const r = useRouter();
   useEffect(() => {
     if (!load) {
-      fetch(`http://localhost:3000/api/getdata`)
+      fetch(`https://api-portifolio.nova-work/api/getdata`)
         .then((e) => e.json())
         .then((e) => {
           setload(true);
