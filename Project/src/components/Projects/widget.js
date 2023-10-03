@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 export default function WidgetProjects({ data }) {
   const [count, setcount] = useState(2);
   const [btnDisable, setbtnDisable] = useState(false);
-  const [load, setload] = useState(false);
 
   const r = useRouter();
   return (
@@ -19,12 +18,6 @@ export default function WidgetProjects({ data }) {
         <div className={style.rowCardItens}>
           {data ? (
             data.map((e, i) => {
-              if (!load) {
-                if (data.length >= count) {
-                  setbtnDisable(true);
-                }
-                setload(true);
-              }
               if (count > i) {
                 return (
                   <div className={style.itemProject} key={i}>
