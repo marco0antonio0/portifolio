@@ -15,7 +15,7 @@ export default function Home() {
   const { v } = r.query;
   useEffect(() => {
     if (!load && v) {
-      fetch(`https://api-portifolio.nova-work/api/getonedata?titulo=${v}`)
+      fetch(`https://api-portifolio.nova-work.cloud/api/getonedata?titulo=${v}`)
         .then((e) => e.json())
         .then((e) => {
           setload(true);

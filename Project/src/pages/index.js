@@ -16,7 +16,7 @@ export default function Home() {
   const r = useRouter();
   useEffect(() => {
     if (!load) {
-      fetch(`https://api-portifolio.nova-work/api/getdata`)
+      fetch(`https://api-portifolio.nova-work.cloud/api/getdata`)
         .then((e) => e.json())
         .then((e) => {
           setload(true);
