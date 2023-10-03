@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@300;400;600&family=Lakki+Reddy&family=Lilita+One&family=Londrina+Solid&family=Montserrat:wght@500&display=swap");
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: rgba(21, 26, 32, 1);
+  font-family: "Inter", sans-serif;
+}
+
+.colunm,
+.colunm1 {
+  display: flex;
+  flex-direction: column;
+}
+.colunm1 {
+  margin: auto;
+  width: 90%;
+}
+
+@media (min-width: 1950px) {
+  .colunm1 {
+    width: 1600px;
+  }
+}

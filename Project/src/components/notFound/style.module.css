@@ -1,0 +1,8 @@
+.container0 {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+.container0 h1 {
+  margin: 50px auto;
+}

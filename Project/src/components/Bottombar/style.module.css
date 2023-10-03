@@ -1,0 +1,40 @@
+.container0 {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  width: 100%;
+  color: white;
+  align-items: center;
+  align-content: center;
+  border-top: solid white 3px;
+}
+.container0 h2 {
+  background: var(
+    --text-gradient,
+    linear-gradient(90deg, #7fe786 7.42%, #58a7fe 93.62%)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: auto;
+  padding: 50px;
+  font-weight: 400;
+}
+@media (max-width: 1200px) {
+  .container0 h2 {
+    font-size: large;
+  }
+}
+@media (max-width: 1000px) {
+  .container0 h2 {
+    font-size: large;
+  }
+}
+@media (max-width: 700px) {
+  .container0 h2 {
+    padding: 30px;
+    font-size: large;
+    text-align: center;
+  }
+}

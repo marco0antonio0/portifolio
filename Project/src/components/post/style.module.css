@@ -1,0 +1,132 @@
+.container0 {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 1000px;
+  color: white;
+}
+.container0 h1 {
+  font-size: 25mm;
+}
+.idea,
+.idea1 {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: -20px;
+}
+.idea1 img {
+  margin: auto;
+  margin-left: 0;
+  margin-right: 10px;
+}
+.idea h2 {
+  color: rgba(139, 148, 158, 1);
+  font-weight: 400;
+}
+.idea img,
+.idea1 img {
+  margin-right: 50px;
+}
+.postText {
+  width: 100%;
+  height: auto;
+  font-size: 7mm;
+  line-height: 10mm;
+  text-align: justify;
+}
+.btnPush {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  height: 70px;
+  width: 300px;
+  border: solid white 3px;
+  border-radius: 23px;
+  user-select: none;
+}
+.btnPush:active {
+  transform: scale(1.05);
+}
+.btnPush span {
+  margin: auto;
+}
+.imgPost {
+  margin: 20px auto;
+  height: auto;
+  width: 100%;
+}
+.imgPost img {
+  height: auto;
+  width: 100%;
+}
+.loadercontainer {
+  margin-top: 30px;
+  text-align: center;
+  color: white;
+}
+
+.loader {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 1200px) {
+  .container0 {
+    width: 100%;
+  }
+}
+@media (max-width: 960px) {
+  .container0 h1 {
+    font-size: 19mm;
+  }
+}
+@media (max-width: 720px) {
+  .btnPush {
+    width: 250px;
+  }
+  .container0 h1 {
+    /* margin-top: 20px; */
+    font-size: 14mm;
+  }
+  .idea {
+    font-size: 3mm;
+  }
+  .idea img {
+    height: 70px;
+  }
+  .idea1 img {
+    height: 100px;
+  }
+}
+@media (max-width: 530px) {
+  .idea1 {
+    margin-top: 10px;
+  }
+  .idea1 img {
+    margin-right: 10px;
+  }
+  .btnPush {
+    width: 200px;
+  }
+  .container0 h1 {
+    font-size: 10mm;
+  }
+  .idea img {
+    margin: auto;
+    height: 50px;
+    margin-right: 20px;
+  }
+}

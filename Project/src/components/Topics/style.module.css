@@ -1,0 +1,257 @@
+.container0,
+.ContainerTitulo {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.ContainerTitulo {
+  height: 150px;
+  width: 100%;
+}
+.ContainerTitulo h1 {
+  margin: auto;
+  background: var(
+    --text-gradient,
+    linear-gradient(90deg, #7fe786 7.42%, #58a7fe 93.62%)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.itemTopics {
+  cursor: pointer;
+  padding: 0;
+  border-radius: 15px;
+  height: auto;
+  width: calc((100% / 4) - 50px);
+  border: solid white 3px;
+  filter: drop-shadow(
+    0px 5.664373874664307px 11.328747749328613px rgba(17, 17, 17, 0.07)
+  );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+.itemTopics:active {
+  transform: scale(1.05);
+}
+.imgItem {
+  border-radius: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100%;
+  overflow: hidden;
+}
+.itemTopics img {
+  border-radius: 15px;
+  margin: auto;
+  overflow: hidden;
+  height: auto;
+  margin-left: -20px;
+  margin-top: -30px;
+  width: 120%;
+}
+.itemContainerTexts {
+  margin-top: -20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  gap: 10px;
+}
+.itemContainerTexts h2,
+.itemContainerTexts span,
+.itemContainerTexts text {
+  text-align: right;
+  margin: auto;
+  margin-bottom: 10px;
+  margin-right: 0;
+}
+.tags {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.tags text {
+  margin-top: -10px;
+  border-radius: 10px;
+  padding: 5px 15px;
+  background-color: #7fe786;
+}
+.rowCardItens {
+  margin: auto;
+  align-items: flex-start;
+  align-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  width: auto;
+}
+.disable {
+  background-color: #58a8fe00;
+  color: #7fe786;
+}
+@media (max-width: 1300px) {
+  .rowCardItens {
+    gap: 20px;
+  }
+  .itemTopics {
+    width: calc((100% / 4) - 30px);
+  }
+  .itemContainerTexts h2 {
+    font-size: larger;
+  }
+  .itemContainerTexts span {
+    font-size: small;
+  }
+  .tags {
+    font-size: small;
+  }
+}
+@media (max-width: 1100px) {
+  .ContainerTitulo {
+    height: 100px;
+  }
+  .rowCardItens {
+    width: 600px;
+    gap: 50px;
+  }
+  .itemTopics {
+    width: calc((100% / 2) - 50px);
+  }
+  .itemContainerTexts h2 {
+    font-size: larger;
+  }
+  .itemContainerTexts span {
+    font-size: small;
+  }
+  .tags {
+    font-size: small;
+  }
+}
+@media (max-width: 650px) {
+  .ContainerTitulo {
+    height: 80px;
+    font-size: medium;
+  }
+  .rowCardItens {
+    width: 100%;
+    gap: 20px;
+  }
+  .itemTopics {
+    width: calc((100% / 2) - 20px);
+  }
+  .itemContainerTexts h2 {
+    font-size: larger;
+  }
+  .itemContainerTexts span {
+    font-size: small;
+  }
+  .tags {
+    font-size: small;
+  }
+}
+@media (max-width: 550px) {
+  .rowCardItens {
+    width: 100%;
+    gap: 20px;
+  }
+  .itemTopics {
+    width: calc((100% / 2) - 20px);
+  }
+  .itemContainerTexts h2 {
+    font-size: larger;
+  }
+  .itemContainerTexts span {
+    font-size: small;
+  }
+  .tags {
+    gap: 0;
+    margin: 0;
+    font-size: small;
+  }
+  .tags text {
+    margin-bottom: 15px;
+  }
+}
+@media (max-width: 515px) {
+  .rowCardItens {
+    width: 100%;
+    gap: 20px;
+  }
+  .itemTopics {
+    width: calc((100% / 2) - 20px);
+  }
+  .itemContainerTexts {
+    margin-top: -30px;
+  }
+  .itemContainerTexts h2 {
+    font-size: larger;
+  }
+  .itemContainerTexts span {
+    font-size: small;
+  }
+  .tags {
+    gap: 0;
+    margin: 0;
+    font-size: small;
+  }
+}
+@media (max-width: 430px) {
+  .rowCardItens {
+    width: 100%;
+    gap: 20px;
+  }
+  .itemTopics {
+    width: calc((100% / 2) - 20px);
+  }
+  .itemContainerTexts {
+    margin-top: -30px;
+  }
+  .itemContainerTexts h2 {
+    font-size: larger;
+    margin-bottom: -5px;
+  }
+  .itemContainerTexts span {
+    font-size: small;
+  }
+  .tags {
+    gap: 0;
+    margin: 0;
+    font-size: small;
+  }
+  .tags text {
+    padding: 5px 10px;
+  }
+}
+@media (max-width: 380px) {
+  .rowCardItens {
+    width: 280px;
+    gap: 20px;
+  }
+  .itemTopics {
+    width: calc((100% / 1) - 20px);
+  }
+  .itemContainerTexts {
+    margin-top: -20px;
+  }
+  .itemContainerTexts h2 {
+    font-size: larger;
+  }
+  .itemContainerTexts span {
+    font-size: small;
+  }
+  .tags {
+    gap: 0;
+    margin: 0;
+    font-size: small;
+  }
+}
