@@ -79,6 +79,9 @@
   height: auto;
   width: 100%;
 }
+.mardownStyle {
+  line-height: normal;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);
