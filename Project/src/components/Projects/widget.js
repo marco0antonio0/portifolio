@@ -35,24 +35,26 @@ export default function WidgetProjects({ data }) {
             </div>
           )}
         </div>
-        <div
-          className={`${style.btnMore} ${
-            btnDisable ? style.btnDisable : false
-          }`}
-          onClick={() => {
-            console.log(count);
-            console.log(data.length);
-            if (data.length <= count + 1) {
-              setbtnDisable(true);
-            }
-            setcount((e) => {
-              let ii = e;
-              return (ii = e + 2);
-            });
-          }}
-        >
-          <span>more +</span>
-        </div>
+        {data ? (
+          <div
+            className={`${style.btnMore} ${
+              btnDisable ? style.btnDisable : false
+            }`}
+            onClick={() => {
+              console.log(count);
+              console.log(data.length);
+              if (data.length <= count + 1) {
+                setbtnDisable(true);
+              }
+              setcount((e) => {
+                let ii = e;
+                return (ii = e + 2);
+              });
+            }}
+          >
+            <span>more +</span>
+          </div>
+        ) : null}
         {/*===================================== */}
       </div>
     </>
