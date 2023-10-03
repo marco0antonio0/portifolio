@@ -1,28 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./style.module.css";
 import { useRouter } from "next/router";
 
-export default function WidgetProjects({ datas }) {
+export default function WidgetProjects({ data }) {
   const [count, setcount] = useState(2);
   const [btnDisable, setbtnDisable] = useState(false);
-  const data = [
-    {
-      titulo: "Flutter Framework",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      titulo: "Flutter Framework",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      titulo: "Flutter Framework",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-    {
-      titulo: "Flutter Framework",
-      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    },
-  ];
+  const [load, setload] = useState(false);
+
   const r = useRouter();
   return (
     <>
@@ -33,8 +17,14 @@ export default function WidgetProjects({ datas }) {
         </div>
         {/*===================================== */}
         <div className={style.rowCardItens}>
-          {datas ? (
-            datas.map((e, i) => {
+          {data ? (
+            data.map((e, i) => {
+              if (!load) {
+                if (data.length >= count) {
+                  setbtnDisable(true);
+                }
+                setload(true);
+              }
               if (count > i) {
                 return (
                   <div className={style.itemProject} key={i}>

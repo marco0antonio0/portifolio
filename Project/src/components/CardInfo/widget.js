@@ -5,17 +5,20 @@ export default function WidgetCardInfo() {
       <div className={style.container0}>
         {/*======================================= */}
         <div className={style.containerLeft}>
-          <h2>Ola,Me chamo Marco</h2>
+          <h2>Hello, my name is Marco</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit
-            amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet,
-            consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur
+            I am a seasoned Full-Stack Developer with in a diverse array of
+            programming languages, encompassing Python, JavaScript, C++, and
+            Pascal. My primary and unwavering focus centers on the dynamic
+            realms of web and mobile development. I have honed my craft,
+            cultivating expertise in cutting-edge technologies such as Flutter,
+            React.js, and Next.js. My career journey has been propelled by a
+            fervent passion for seamlessly integrating APIs and adeptly
+            overseeing the intricacies of database management. I am committed to
+            a lifelong pursuit of knowledge, perpetually refining and elevating
+            my skill set in this ever-evolving field.
           </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit.
-          </p>
+
           <div className={style.iconClass}>
             <span>web</span>
             <span>mobile</span>

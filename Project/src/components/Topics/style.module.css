@@ -159,6 +159,12 @@
     font-size: small;
   }
 }
+@media (max-width: 580px) {
+  .ContainerTitulo {
+    height: 80px;
+    font-size: small;
+  }
+}
 @media (max-width: 550px) {
   .rowCardItens {
     width: 100%;
