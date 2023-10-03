@@ -11,6 +11,8 @@
   "dependencies": {
     "next": "^13.4.19",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-markdown": "^9.0.0",
+    "remark-gfm": "^4.0.0"
   }
 }

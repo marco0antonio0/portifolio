@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import style from "./style.module.css";
+import Markdown from "react-markdown";
 
 export default function WidgetPost({ data = [] }) {
   const r = useRouter();
@@ -16,11 +17,13 @@ export default function WidgetPost({ data = [] }) {
             <h2>{data["subtitulo"]}</h2>
           </div>
 
-          <div className={style.imgPost}>
+          {/* <div className={style.imgPost}>
             <img src="/images/image0.png" alt="" />
-          </div>
+          </div> */}
           <div className={style.postText}>
-            <p>{data["textPost"]}</p>
+            <Markdown className={style.mardownStyle}>
+              {data["textPost"]}
+            </Markdown>
           </div>
           <div
             className={style.btnPush}
