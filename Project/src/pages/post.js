@@ -38,8 +38,14 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Projet - {coment} </title>
-        <meta name="description" content={coment2} />
+        <title>
+          Project - Marco Antonio - Desenvolvedor Fullstack em Belém e
+          Ananindeua
+        </title>
+        <meta
+          name="description"
+          content="Conheça o portfólio de Marco Antonio, um desenvolvedor fullstack com experiência em criar soluções web de alta qualidade para Belém e Ananindeua. Saiba mais sobre suas habilidades e projetos."
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
