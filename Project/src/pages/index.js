@@ -46,8 +46,8 @@ export default function Home() {
             data={[
               { nome: "Flutter", cor: "bg-purple-400" },
               { nome: "NextJS", cor: "bg-blue-300" },
-              // { nome: "Python", cor: "bg-green-200" },
               { nome: "NodeJS", cor: "bg-green-200" },
+              { nome: "Flask", cor: "bg-purple-400" },
             ]}
           />
           <GridTemp
