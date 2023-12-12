@@ -1,53 +1,67 @@
-import Head from "next/head";
-import { Inter } from "next/font/google";
-import WidgetAppBar from "./../components/appBar/widget";
-import WidgetCardInfo from "./../components/CardInfo/widget";
-import WidgetTopics from "./../components/Topics/widget";
-import WidgetProjects from "./../components/Projects/widget";
-import WidgetBottomBar from "./../components/Bottombar/widget";
+import TopBar from "@/components/topbar";
+import Carrosel from "@/components/carrosel";
+import Sobre from "@/components/sobre";
+import GridItens from "./../components/gridItens";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-
-const inter = Inter({ subsets: ["latin"] });
+import EstadoGlobal from "@/models/global";
+import GridTemp from "@/components/gridTemplate";
+import Head from "next/head";
 
 export default function Home() {
-  const [data, setdata] = useState();
-  const [load, setload] = useState(false);
-  const r = useRouter();
+  const [data, setdata] = useState([]);
+  const [btnstate, setbtnstate] = useState(false);
   useEffect(() => {
-    if (!load) {
-      fetch(`https://api-portifolio.nova-work.cloud/api/getdata`)
-        .then((e) => e.json())
-        .then((e) => {
-          setload(true);
-          console.log(e);
-          setdata(e.data);
-          setload(true);
-        });
-    }
-  });
+    data.length
+      ? null
+      : fetch("https://api-portifolio.nova-work.cloud/api/getdata")
+          .then((e) => e.json())
+          .then((e) => {
+            setdata(e.data);
+          });
+  }, [data]);
   return (
-    <>
+    <main className={`flex flex-col w-full`}>
       <Head>
-        <title>
-          Inicio - Marco Antonio - Desenvolvedor Fullstack em Belém e Ananindeua
-        </title>
+        <title>Portfólio de Marco Antonio</title>
         <meta
           name="description"
-          content="Conheça o portfólio de Marco Antonio, um desenvolvedor fullstack com experiência em criar soluções web de alta qualidade para Belém e Ananindeua. Saiba mais sobre suas habilidades e projetos."
+          content="Desenvolvedor Full Stack em Belém, especializado em Front-end e Back-end. Universitário na UNAMA e líder da Liga Acadêmica LADSOFT em Belém."
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="keywords"
+          content="Portfólio, Marco Antonio, Desenvolvedor Full Stack, Belém, Front-end, Back-end, Universitário, UNAMA, Liga Acadêmica LADSOFT"
+        />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
-      <div className="colunm">
-        <div className="colunm1">
-          <WidgetAppBar />
-          <WidgetCardInfo />
-          <WidgetTopics />
-          <WidgetProjects data={data} />
-          <WidgetBottomBar />
-        </div>
+      <TopBar state={[true, false, false]} />
+      <div className="flex flex-col w-11/12 m-auto mb-5 ">
+        <EstadoGlobal.Provider value={{ btnstate, setbtnstate }}>
+          <Carrosel />
+          {!btnstate ? null : <Sobre />}
+          <GridItens data={data} state={false} fn={() => {}} />
+          <GridTemp
+            titulo={"Meus frameworks"}
+            subtitulo={"Principais Frameworks utilizados em projetos de marco"}
+            data={[
+              { nome: "Flutter", cor: "bg-purple-400" },
+              { nome: "NextJS", cor: "bg-blue-300" },
+              // { nome: "Python", cor: "bg-green-200" },
+              { nome: "NodeJS", cor: "bg-green-200" },
+            ]}
+          />
+          <GridTemp
+            titulo={"Linguagens de Progamação"}
+            subtitulo={"Principais linguagens utilizados em projetos de marco"}
+            data={[
+              { nome: "Dart", cor: "bg-purple-400" },
+              { nome: "Javascript", cor: "bg-blue-300" },
+              { nome: "Python", cor: "bg-green-200" },
+              { nome: "Kit Dev Web", cor: "bg-purple-400" },
+            ]}
+          />
+        </EstadoGlobal.Provider>
       </div>
-    </>
+    </main>
   );
 }
