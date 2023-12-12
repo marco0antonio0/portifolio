@@ -6,10 +6,10 @@ export default function GridItens({ data, state = false }) {
   const r = useRouter();
   return (
     <>
-      <h1 className="flex m-auto my-0 text-5xl font-bold md:text-4xl mt-10 sml:text-3xl">
+      <h1 className="flex m-auto my-0 text-5xl font-bold md:text-4xl mt-10 sml:text-3xl text-center">
         Projetos desenvolvidos
       </h1>
-      <span className="m-auto my-5 text-xl opacity-70 mt-3 sml:px-5 ">
+      <span className="m-auto my-5 text-xl opacity-70 mt-3 sml:px-5 text-justify">
         Explore paginas de projetos abaixo e veja magnificos projetos
         desenvolvidos por marco
       </span>
@@ -65,7 +65,7 @@ function Item({ nome, id }) {
           className="m-auto mt-8 lg:mt-4 md:px-8"
         />
         <h1 className="m-auto font-medium text-2xl mt-2 lg:text-xl px-5">
-          {nome.length > 20 ? `${nome.substring(0, 14)} ...` : nome}
+          {nome.length > 20 ? `${nome.substring(0, 18)} ...` : nome}
         </h1>
         <span className="m-auto mb-14 lg:text-sm lg:mb-7">
           clique e saiba mais

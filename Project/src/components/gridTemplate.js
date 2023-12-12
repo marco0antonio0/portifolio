@@ -4,10 +4,10 @@ export default function GridTemp({ data, titulo, subtitulo }) {
   const r = useRouter();
   return (
     <>
-      <h1 className="flex m-auto my-0 text-5xl font-bold md:text-4xl mt-10 sml:text-3xl">
+      <h1 className="flex m-auto my-0 text-5xl font-bold md:text-4xl mt-10 sml:text-3xl text-center">
         {titulo}
       </h1>
-      <span className="m-auto my-5 text-xl opacity-70 mt-3 sml:px-5 ">
+      <span className="m-auto my-5 text-xl opacity-70 mt-3 sml:px-5 text-justify">
         {subtitulo}
       </span>
       <div className=" w-8/12 justify-center sm:justify-start  m-auto flex flex-row flex-wrap content-between items-stretch align-middle md:w-10/12 sm:w-full">
