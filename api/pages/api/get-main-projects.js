@@ -1,6 +1,6 @@
 // api/exemplo.js
 const DatabaseConnection = require("./../../models/connection"); // Ajuste o caminho conforme necessário
-const cors = require("cors");
+
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Credentials", true);
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -13,14 +13,13 @@ export default async function handler(req, res) {
     "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
   );
   const db = new DatabaseConnection();
-  const { titulo } = req.query;
-  console.log(titulo);
   try {
     await db.connect();
     console.log("Connected to the database");
 
-    const sql = `SELECT * FROM post WHERE titulo = "${titulo} AND id <> 14"`; // query SQL atribuida a variavel
+    const sql = "SELECT * FROM post WHERE id = 14"; // query SQL atribuida a variavel
     const results = await db.query(sql); // query SQL sendo executada
+
     console.log("Query results:", results); // em caso de sucesso ira print a mensagem results
     res.status(200).json({ data: results });
   } catch (error) {

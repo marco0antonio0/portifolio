@@ -6,9 +6,11 @@ import { useEffect, useState } from "react";
 import EstadoGlobal from "@/models/global";
 import GridTemp from "@/components/gridTemplate";
 import Head from "next/head";
+import GridTempMainProjects from "@/components/gridTemplate-main-projects";
 
 export default function Home() {
   const [data, setdata] = useState([]);
+  const [dataMainProjects, setdataMainProjects] = useState();
   const [btnstate, setbtnstate] = useState(false);
   useEffect(() => {
     data.length
@@ -17,6 +19,15 @@ export default function Home() {
           .then((e) => e.json())
           .then((e) => {
             setdata(e.data);
+          });
+  }, [data]);
+  useEffect(() => {
+    data.length
+      ? null
+      : fetch("https://api-portifolio.nova-work.cloud/api/get-main-projects")
+          .then((e) => e.json())
+          .then((e) => {
+            setdataMainProjects(e.data);
           });
   }, [data]);
   return (
@@ -39,6 +50,17 @@ export default function Home() {
         <EstadoGlobal.Provider value={{ btnstate, setbtnstate }}>
           <Carrosel />
           {!btnstate ? null : <Sobre />}
+          {dataMainProjects ? (
+            <GridTempMainProjects
+              titulo={dataMainProjects["data"]["titulo"]}
+              subtitulo={"Principais projetos de marco"}
+              data={dataMainProjects["data"]["textPost"]}
+            />
+          ) : (
+            <div className="flex items-center justify-center m-auto  my-16">
+              <div className="animate-spin rounded-full border-t-4 border-green-300 border-opacity-50 h-12 w-12"></div>
+            </div>
+          )}
           <GridItens data={data} state={false} fn={() => {}} />
           <GridTemp
             titulo={"Meus frameworks"}
