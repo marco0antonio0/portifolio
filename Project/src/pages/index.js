@@ -22,14 +22,15 @@ export default function Home() {
           });
   }, [data]);
   useEffect(() => {
-    data.length
+    dataMainProjects
       ? null
       : fetch("https://api-portifolio.nova-work.cloud/api/get-main-projects")
           .then((e) => e.json())
           .then((e) => {
             setdataMainProjects(e.data);
+            console.log(dataMainProjects);
           });
-  }, [data]);
+  }, [dataMainProjects]);
   return (
     <main className={`flex flex-col w-full`}>
       <Head>
@@ -52,9 +53,9 @@ export default function Home() {
           {!btnstate ? null : <Sobre />}
           {dataMainProjects ? (
             <GridTempMainProjects
-              titulo={dataMainProjects["data"]["titulo"]}
+              titulo={dataMainProjects[0]["titulo"]}
               subtitulo={"Principais projetos de marco"}
-              data={dataMainProjects["data"]["textPost"]}
+              data={dataMainProjects[0]["textPost"]}
             />
           ) : (
             <div className="flex items-center justify-center m-auto  my-16">

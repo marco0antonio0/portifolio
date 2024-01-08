@@ -36,7 +36,7 @@ export default function Projetos() {
       <TopBar state={[false, true, false]} />
       <div className="flex flex-col w-11/12 m-auto mb-5">
         <Carrosel img={"images/img11.png"} img2={"images/walpaper233.png"} />
-        <GridItens data={data} state={true} />
+        <GridItens data={data} state={true} btnText="mostrar mais" />
       </div>
     </main>
   );

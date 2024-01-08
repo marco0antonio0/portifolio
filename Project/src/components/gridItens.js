@@ -1,7 +1,11 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export default function GridItens({ data, state = false }) {
+export default function GridItens({
+  data,
+  state = false,
+  btnText = "ir para projetos",
+}) {
   const [count, setcount] = useState(4);
   const r = useRouter();
   return (
@@ -43,7 +47,7 @@ export default function GridItens({ data, state = false }) {
             count >= data.length ? "opacity-10" : "opacity-80"
           }  bg-redP h-full flex m-auto cursor-pointer select-none active:scale-[1.05]  shadow-lg  sml:w-40 `}
         >
-          <span className="px-16 m-auto md:px-12 sml:px-0 ">ver mais</span>
+          <span className="px-16 m-auto md:px-12 sml:px-0 ">{btnText}</span>
         </div>
       </div>
     </>

@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     await db.connect();
     console.log("Connected to the database");
 
-    const sql = `SELECT * FROM post WHERE titulo = "${titulo} AND id <> 14"`; // query SQL atribuida a variavel
+    const sql = `SELECT * FROM post WHERE titulo = "${titulo}"`; // query SQL atribuida a variavel
     const results = await db.query(sql); // query SQL sendo executada
     console.log("Query results:", results); // em caso de sucesso ira print a mensagem results
     res.status(200).json({ data: results });

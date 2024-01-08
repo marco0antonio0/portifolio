@@ -36,11 +36,11 @@ export default function Carrosel({ img, img2 }) {
         {/*================================================= */}
         <div
           onClick={() => {
-            r.push("https://wa.me/5591984837847");
+            r.push("https://github.com/marco0antonio0");
           }}
           className=" h-full flex m-auto ml-3 text-redP cursor-pointer select-none active:scale-[1.05]"
         >
-          <span className="px-16 m-auto sml:w-32 sml:p-0 ">contato</span>
+          <span className="px-16 m-auto sml:w-32 sml:p-0 ">github</span>
         </div>
         {/*================================================= */}
       </div>
