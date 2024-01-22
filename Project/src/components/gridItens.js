@@ -25,7 +25,7 @@ export default function GridItens({
         ) : (
           data.map((e, i) => {
             if (i < count) {
-              return <Item key={i} nome={e["titulo"]} id={e["id"]} />;
+              return <Item key={i} nome={e["title"]} id={e["key"]} />;
             }
           })
         )}
@@ -59,7 +59,7 @@ function Item({ nome, id }) {
     <>
       <div
         onClick={() => {
-          r.push("/projeto/" + nome);
+          r.push("/projeto/" + id);
         }}
         className="w-72 h-auto bg-whitep flex flex-col content-end align-middle ml-5 mb-5 lg:w-5/12 shadow-lg active:scale-[1.05] cursor-pointer"
       >

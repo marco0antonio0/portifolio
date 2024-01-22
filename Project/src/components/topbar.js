@@ -22,7 +22,7 @@ function LayoutSmartphone({ state }) {
       {/* ========================================================================= */}
       <div className="flex flex-row w-full  h-32 sm1:h-24">
         <img
-          src="/images/logo-portifolio.png"
+          src="/images/logo-nnew.png"
           alt=""
           className="h-full w-auto p-5 ml-14 sm:ml-5 "
         />
@@ -81,7 +81,7 @@ function LayoutDesktop({ state }) {
     <>
       <div className="flex flex-row h-36">
         <img
-          src="/images/logo-portifolio.png"
+          src="/images/logo-nnew.png"
           alt=""
           className="h-full w-auto p-5 ml-20 lg:ml-5"
         />

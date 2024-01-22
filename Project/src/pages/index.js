@@ -7,30 +7,43 @@ import EstadoGlobal from "@/models/global";
 import GridTemp from "@/components/gridTemplate";
 import Head from "next/head";
 import GridTempMainProjects from "@/components/gridTemplate-main-projects";
+import { getPostByKey, getPosts } from "@/services/post";
 
 export default function Home() {
-  const [data, setdata] = useState([]);
+  const [dataFirebase, setdataFirebase] = useState([]);
   const [dataMainProjects, setdataMainProjects] = useState();
   const [btnstate, setbtnstate] = useState(false);
   useEffect(() => {
-    data.length
+    dataFirebase.length
       ? null
-      : fetch("https://api-portifolio.nova-work.cloud/api/getdata")
-          .then((e) => e.json())
+      : getPosts()
           .then((e) => {
-            setdata(e.data);
-          });
-  }, [data]);
+            setdataFirebase(e);
+          })
+          .catch((e) => setdataFirebase([]));
+  }, [dataFirebase]);
+
   useEffect(() => {
     dataMainProjects
       ? null
-      : fetch("https://api-portifolio.nova-work.cloud/api/get-main-projects")
-          .then((e) => e.json())
+      : getPostByKey("textoPrincipal", { prefix: "/" })
           .then((e) => {
-            setdataMainProjects(e.data);
-            console.log(dataMainProjects);
-          });
-  }, [dataMainProjects]);
+            console.log(e);
+            setdataMainProjects(e);
+          })
+          .catch((e) => setdataMainProjects([]));
+  }, [dataFirebase]);
+
+  // useEffect(() => {
+  //   !dataMainProjects
+  //     ? null
+  //     : fetch("https://api-portifolio.nova-work.cloud/api/get-main-projects")
+  //         .then((e) => e.json())
+  //         .then((e) => {
+  //           // console.log(e);
+  //           setdataMainProjects(e.data);
+  //         });
+  // }, [dataMainProjects]);
   return (
     <main className={`flex flex-col w-full`}>
       <Head>
@@ -53,16 +66,16 @@ export default function Home() {
           {!btnstate ? null : <Sobre />}
           {dataMainProjects ? (
             <GridTempMainProjects
-              titulo={dataMainProjects[0]["titulo"]}
+              titulo={dataMainProjects["title"]}
               subtitulo={"Principais projetos de marco"}
-              data={dataMainProjects[0]["textPost"]}
+              data={dataMainProjects["text"]}
             />
           ) : (
             <div className="flex items-center justify-center m-auto  my-16">
               <div className="animate-spin rounded-full border-t-4 border-green-300 border-opacity-50 h-12 w-12"></div>
             </div>
           )}
-          <GridItens data={data} state={false} fn={() => {}} />
+          <GridItens data={dataFirebase} state={false} fn={() => {}} />
           <GridTemp
             titulo={"Meus frameworks"}
             subtitulo={"Principais Frameworks utilizados em projetos de marco"}

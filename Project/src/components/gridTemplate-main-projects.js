@@ -12,7 +12,7 @@ export default function GridTempMainProjects({ data, titulo, subtitulo }) {
         {subtitulo}
       </span>
       <div className=" w-8/12 m-auto flex flex-col md:w-10/12 sm:w-full prose xl:prose-xl lg:prose-lg md:prose-base sm:prose-sm ">
-        {data.length ? (
+        {data ? (
           <Markdown className="prose-img:w-full">{data}</Markdown>
         ) : (
           <div className="flex items-center justify-center m-auto my-20 mt-5">

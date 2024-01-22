@@ -4,19 +4,21 @@ import Sobre from "@/components/sobre";
 import { useEffect, useState } from "react";
 import GridItens from "@/components/gridItens";
 import Head from "next/head";
+import { getPosts } from "@/services/post";
 
 export default function Projetos() {
-  const [data, setdata] = useState([]);
+  const [dataFirebase, setdataFirebase] = useState([]);
 
   useEffect(() => {
-    data.length
+    dataFirebase.length
       ? null
-      : fetch("https://api-portifolio.nova-work.cloud/api/getdata")
-          .then((e) => e.json())
+      : getPosts()
           .then((e) => {
-            setdata(e.data);
-          });
-  }, [data]);
+            console.log(e);
+            setdataFirebase(e);
+          })
+          .catch((e) => setdataFirebase([]));
+  }, [dataFirebase]);
 
   return (
     <main className={`flex flex-col w-full`}>
@@ -36,7 +38,7 @@ export default function Projetos() {
       <TopBar state={[false, true, false]} />
       <div className="flex flex-col w-11/12 m-auto mb-5">
         <Carrosel img={"images/img11.png"} img2={"images/walpaper233.png"} />
-        <GridItens data={data} state={true} btnText="mostrar mais" />
+        <GridItens data={dataFirebase} state={true} btnText="mostrar mais" />
       </div>
     </main>
   );
