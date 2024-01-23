@@ -101,3 +101,8 @@ export default function Home() {
     </main>
   );
 }
+
+// const usersRef = query(
+//   ref(db, `post`),
+//   ...[orderByChild("title"), equalTo(key)]
+// );

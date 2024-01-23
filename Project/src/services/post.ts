@@ -1,5 +1,19 @@
 import { db } from "@/firebase.config";
-import { get, push, ref, remove, set, update } from "firebase/database";
+import { equal } from "assert";
+import {
+  child,
+  equalTo,
+  get,
+  getDatabase,
+  orderByChild,
+  push,
+  query,
+  ref,
+  remove,
+  set,
+  startAt,
+  update,
+} from "firebase/database";
 
 function transformarEmLista(objeto: {
   [key: string]: { text: string; title: string };
@@ -29,11 +43,24 @@ async function getPostByKey(
   { prefix = "post/" }: { prefix: string }
 ) {
   return new Promise((resolve, reject) => {
-    var reff = ref(db, prefix + key);
+    var status = false;
+    var reff = ref(db, prefix);
     get(reff)
       .then((e) => {
         if (e.exists()) {
-          resolve(e.val());
+          try {
+            transformarEmLista(e.val()).map((e) => {
+              if (e.title == key) {
+                status = true;
+                resolve(e);
+              }
+            });
+            if (status == false) {
+              reject(null);
+            }
+          } catch (error) {
+            reject(null);
+          }
         } else {
           reject(null);
         }

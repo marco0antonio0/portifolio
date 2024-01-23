@@ -25,7 +25,7 @@ export default function GridItens({
         ) : (
           data.map((e, i) => {
             if (i < count) {
-              return <Item key={i} nome={e["title"]} id={e["key"]} />;
+              return <Item key={i} nome={e["title"]} id={e["title"]} />;
             }
           })
         )}

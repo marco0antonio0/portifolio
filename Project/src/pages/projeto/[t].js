@@ -19,7 +19,7 @@ export default function Projetos() {
   useEffect(() => {
     dataFirebase.length
       ? null
-      : getPostByKey(t, { prefix: "post/" })
+      : getPostByKey(t, { prefix: "post" })
           .then((e) => {
             if (typeof e == "undefined") {
               if (retryCount < MAX_RETRIES) {
@@ -30,12 +30,22 @@ export default function Projetos() {
                 r.push("/404");
               }
             } else {
-              // console.log(e);
               setRetryCount(0);
               setdataFirebase(e);
             }
           })
-          .catch((e) => setdataFirebase([]));
+          .catch((e) => {
+            if (typeof e == "undefined" || e == null) {
+              if (retryCount < MAX_RETRIES) {
+                // Increment retry count and try again
+                setRetryCount(retryCount + 1);
+              } else {
+                // Retry count exceeded, redirect to "/404"
+                r.push("/404");
+              }
+            }
+            setdataFirebase([]);
+          });
   }, [retryCount, t]);
 
   return (
