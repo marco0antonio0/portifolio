@@ -1,19 +1,5 @@
 import { db } from "@/firebase.config";
-import { equal } from "assert";
-import {
-  child,
-  equalTo,
-  get,
-  getDatabase,
-  orderByChild,
-  push,
-  query,
-  ref,
-  remove,
-  set,
-  startAt,
-  update,
-} from "firebase/database";
+import { get, ref } from "firebase/database";
 
 function transformarEmLista(objeto: {
   [key: string]: { text: string; title: string };
@@ -71,4 +57,26 @@ async function getPostByKey(
   });
 }
 
-export { getPosts, getPostByKey };
+// recupera apenas o dado fornecido pela key
+async function getPostByMain() {
+  return new Promise((resolve, reject) => {
+    var reff = ref(db, "textoPrincipal");
+    get(reff)
+      .then((e) => {
+        if (e.exists()) {
+          try {
+            resolve(e.val());
+          } catch (error) {
+            reject(null);
+          }
+        } else {
+          reject(null);
+        }
+      })
+      .catch((e) => {
+        reject(null);
+      });
+  });
+}
+
+export { getPosts, getPostByKey, getPostByMain };

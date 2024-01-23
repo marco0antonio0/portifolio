@@ -7,7 +7,7 @@ import EstadoGlobal from "@/models/global";
 import GridTemp from "@/components/gridTemplate";
 import Head from "next/head";
 import GridTempMainProjects from "@/components/gridTemplate-main-projects";
-import { getPostByKey, getPosts } from "@/services/post";
+import { getPostByMain, getPosts } from "@/services/post";
 
 export default function Home() {
   const [dataFirebase, setdataFirebase] = useState([]);
@@ -26,24 +26,13 @@ export default function Home() {
   useEffect(() => {
     dataMainProjects
       ? null
-      : getPostByKey("textoPrincipal", { prefix: "/" })
+      : getPostByMain()
           .then((e) => {
-            console.log(e);
             setdataMainProjects(e);
           })
           .catch((e) => setdataMainProjects([]));
   }, [dataFirebase]);
 
-  // useEffect(() => {
-  //   !dataMainProjects
-  //     ? null
-  //     : fetch("https://api-portifolio.nova-work.cloud/api/get-main-projects")
-  //         .then((e) => e.json())
-  //         .then((e) => {
-  //           // console.log(e);
-  //           setdataMainProjects(e.data);
-  //         });
-  // }, [dataMainProjects]);
   return (
     <main className={`flex flex-col w-full`}>
       <Head>

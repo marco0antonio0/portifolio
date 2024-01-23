@@ -1,9 +1,7 @@
 import TopBar from "@/components/topbar";
-import Carrosel from "@/components/carrosel";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import Head from "next/head";
 import { getPostByKey } from "@/services/post";
 const MAX_RETRIES = 5;
@@ -31,6 +29,7 @@ export default function Projetos() {
               }
             } else {
               setRetryCount(0);
+              settitulo(e.title);
               setdataFirebase(e);
             }
           })
@@ -46,12 +45,12 @@ export default function Projetos() {
             }
             setdataFirebase([]);
           });
-  }, [retryCount, t]);
+  }, [retryCount, t, titulo]);
 
   return (
     <main className={`flex flex-col w-full`}>
       <Head>
-        <title>Projeto {titulo.length ? titulo : "carregando"}</title>
+        <title>Projeto {titulo.length ? titulo : ""}</title>
         <meta
           name="description"
           content="Desenvolvedor Full Stack em Belém, especializado em Front-end e Back-end. Universitário na UNAMA e líder da Liga Acadêmica LADSOFT em Belém."
