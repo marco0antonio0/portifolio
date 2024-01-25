@@ -53,10 +53,7 @@ export default function Post() {
     <main className={`flex flex-col w-full`}>
       <Head>
         <title>Projeto {titulo.length ? titulo : ""}</title>
-        <meta
-          name="description"
-          content={desc.length ? dataFirebase["text"] : ""}
-        />
+        <meta name="description" content={desc.length ? desc : ""} />
         <meta name="keywords" content={desc.length ? desc : ""} />
         <link rel="manifest" href="/manifest.json" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
