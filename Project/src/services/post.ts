@@ -7,9 +7,9 @@ function transformarEmLista(objeto: {
   return Object.entries(objeto).map(([key, value]) => ({ key, ...value }));
 }
 // recupera todos os dados e transforma em lista
-async function getPosts() {
+async function getPosts(t: string) {
   return new Promise((resolve, reject) => {
-    var reff = ref(db, "post/");
+    var reff = ref(db, t);
     get(reff)
       .then((e) => {
         if (e.exists()) {

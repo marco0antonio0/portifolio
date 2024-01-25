@@ -8,20 +8,31 @@ import GridTemp from "@/components/gridTemplate";
 import Head from "next/head";
 import GridTempMainProjects from "@/components/gridTemplate-main-projects";
 import { getPostByMain, getPosts } from "@/services/post";
+import GridItensPostagens from "@/components/gridItensPostagens";
 
 export default function Home() {
   const [dataFirebase, setdataFirebase] = useState([]);
+  const [dataFirebaseInfos, setdataFirebaseInfos] = useState([]);
   const [dataMainProjects, setdataMainProjects] = useState();
   const [btnstate, setbtnstate] = useState(false);
   useEffect(() => {
     dataFirebase.length
       ? null
-      : getPosts()
+      : getPosts("post")
           .then((e) => {
             setdataFirebase(e);
           })
           .catch((e) => setdataFirebase([]));
   }, [dataFirebase]);
+  useEffect(() => {
+    dataFirebaseInfos.length
+      ? null
+      : getPosts("informativo")
+          .then((e) => {
+            setdataFirebaseInfos(e);
+          })
+          .catch((e) => setdataFirebaseInfos([]));
+  }, [dataFirebaseInfos]);
 
   useEffect(() => {
     dataMainProjects
@@ -65,6 +76,12 @@ export default function Home() {
             </div>
           )}
           <GridItens data={dataFirebase} state={false} fn={() => {}} />
+
+          <GridItensPostagens
+            data={dataFirebaseInfos}
+            state={false}
+            fn={() => {}}
+          />
           <GridTemp
             titulo={"Meus frameworks"}
             subtitulo={"Principais Frameworks utilizados em projetos de marco"}

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export default function TopBar({ state = [true, false, false] }) {
+export default function TopBar({ state = [true, false, false, false] }) {
   return (
     <>
       <div className="md:flex flex-col hidden">
@@ -66,6 +66,16 @@ function LayoutSmartphone({ state }) {
             !state[2] ? "opacity-50" : ""
           }`}
           onClick={() => {
+            r.push("/post");
+          }}
+        >
+          <h1>posts</h1>
+        </button>
+        <button
+          className={`m-auto ml-0 cursor-pointer active:scale-[1.05] ${
+            !state[3] ? "opacity-50" : ""
+          }`}
+          onClick={() => {
             r.push("https://wa.me/5591984837847");
           }}
         >
@@ -85,7 +95,7 @@ function LayoutDesktop({ state }) {
           alt=""
           className="h-full w-auto p-5 ml-20 lg:ml-5"
         />
-        <div className="flex flex-row text-2xl font-medium w-96 pt-5 m-auto ml-72 lg:ml-20 ">
+        <div className="flex flex-row text-2xl font-medium w-[500px] pt-5 m-auto ml-72 lg:ml-20 ">
           <button
             className={`m-auto cursor-pointer active:scale-[1.05] ${
               !state[0] ? "opacity-50" : ""
@@ -109,6 +119,16 @@ function LayoutDesktop({ state }) {
           <button
             className={`m-auto cursor-pointer active:scale-[1.05] ${
               !state[2] ? "opacity-50" : ""
+            }`}
+            onClick={() => {
+              r.push("/post");
+            }}
+          >
+            <h1>posts</h1>
+          </button>
+          <button
+            className={`m-auto cursor-pointer active:scale-[1.05] ${
+              !state[3] ? "opacity-50" : ""
             }`}
             onClick={() => {
               r.push("https://wa.me/5591984837847");

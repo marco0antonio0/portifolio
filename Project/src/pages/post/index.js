@@ -5,14 +5,15 @@ import { useEffect, useState } from "react";
 import GridItens from "@/components/gridItens";
 import Head from "next/head";
 import { getPosts } from "@/services/post";
+import GridItensPostagens from "@/components/gridItensPostagens";
 
-export default function Projetos() {
+export default function Posts() {
   const [dataFirebase, setdataFirebase] = useState([]);
 
   useEffect(() => {
     dataFirebase.length
       ? null
-      : getPosts("post")
+      : getPosts("informativo")
           .then((e) => {
             console.log(e);
             setdataFirebase(e);
@@ -35,10 +36,13 @@ export default function Projetos() {
         <link rel="manifest" href="/manifest.json" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
-      <TopBar state={[false, true, false]} />
+      <TopBar state={[false, false, true, false]} />
       <div className="flex flex-col w-11/12 m-auto mb-5">
-        <Carrosel img={"images/img11.png"} img2={"images/walpaper233.png"} />
-        <GridItens data={dataFirebase} state={true} btnText="mostrar mais" />
+        <Carrosel
+          img={"images/imagePost1.png"}
+          img2={"images/imagePost2.png"}
+        />
+        <GridItensPostagens data={dataFirebase} state={true} fn={() => {}} />
       </div>
     </main>
   );
