@@ -35,7 +35,7 @@ export default function GridItensPostagens({
         <div
           onClick={() => {
             !state
-              ? r.push("/projeto")
+              ? r.push("/post")
               : setcount((e) => {
                   let isntance = e;
                   isntance += 3;
