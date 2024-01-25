@@ -10,6 +10,7 @@ export default function Post() {
   const [data, setdata] = useState([]);
   const [dataFirebase, setdataFirebase] = useState([]);
   const [titulo, settitulo] = useState("");
+  const [desc, setdesc] = useState("");
   const [retryCount, setRetryCount] = useState(0);
   const r = useRouter();
   const { t } = r.query;
@@ -30,6 +31,7 @@ export default function Post() {
             } else {
               setRetryCount(0);
               settitulo(e.title);
+              setdesc(e.text);
               setdataFirebase(e);
             }
           })
@@ -45,7 +47,7 @@ export default function Post() {
             }
             setdataFirebase([]);
           });
-  }, [retryCount, t, titulo]);
+  }, [retryCount, t, titulo, desc]);
 
   return (
     <main className={`flex flex-col w-full`}>
@@ -53,12 +55,9 @@ export default function Post() {
         <title>Projeto {titulo.length ? titulo : ""}</title>
         <meta
           name="description"
-          content={dataFirebase ? dataFirebase["text"] : ""}
+          content={desc.length ? dataFirebase["text"] : ""}
         />
-        <meta
-          name="keywords"
-          content={`Projeto ${titulo},Portfólio Marco Antonio, Desenvolvedor Full Stack, Belém, Front-end, Back-end, Universitário, UNAMA, Liga Acadêmica LADSOFT`}
-        />
+        <meta name="keywords" content={desc.length ? desc : ""} />
         <link rel="manifest" href="/manifest.json" />
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
