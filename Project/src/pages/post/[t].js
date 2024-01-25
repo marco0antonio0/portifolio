@@ -53,7 +53,7 @@ export default function Post() {
         <title>Projeto {titulo.length ? titulo : ""}</title>
         <meta
           name="description"
-          content="Desenvolvedor Full Stack em Belém, especializado em Front-end e Back-end. Universitário na UNAMA e líder da Liga Acadêmica LADSOFT em Belém."
+          content={dataFirebase ? dataFirebase["text"] : ""}
         />
         <meta
           name="keywords"
