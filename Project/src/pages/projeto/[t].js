@@ -3,49 +3,50 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Markdown from "react-markdown";
 import Head from "next/head";
-import { getPostByKey } from "@/services/post";
-const MAX_RETRIES = 5;
 
 export default function Projetos() {
-  const [data, setdata] = useState([]);
-  const [dataFirebase, setdataFirebase] = useState([]);
-  const [titulo, settitulo] = useState("");
+  const [dataPosts, setDataPosts] = useState(null);
+  const [isLoad, setIsLoad] = useState(false);
+  const [titulo, setTitulo] = useState("");
   const [retryCount, setRetryCount] = useState(0);
-  const r = useRouter();
-  const { t } = r.query;
+  const router = useRouter();
+  const { t } = router.query;
 
   useEffect(() => {
-    dataFirebase.length
-      ? null
-      : getPostByKey(t, { prefix: "post" })
-          .then((e) => {
-            if (typeof e == "undefined") {
-              if (retryCount < MAX_RETRIES) {
-                // Increment retry count and try again
-                setRetryCount(retryCount + 1);
-              } else {
-                // Retry count exceeded, redirect to "/404"
-                r.push("/404");
-              }
+    if (!t) return; // Aguarde até que t esteja definido
+
+    if (!isLoad) {
+      fetch(`https://portfolio-api.dirrocha.com/posts/titulo/${t}`, { method: 'GET' })
+        .then((response) => {
+          if (response.status === 404 || response.status !== 200) {
+            if (retryCount < MAX_RETRIES) {
+              setRetryCount(retryCount + 1);
             } else {
-              setRetryCount(0);
-              settitulo(e.title);
-              setdataFirebase(e);
+              setIsLoad(true);
+              router.push("/404");
             }
-          })
-          .catch((e) => {
-            if (typeof e == "undefined" || e == null) {
-              if (retryCount < MAX_RETRIES) {
-                // Increment retry count and try again
-                setRetryCount(retryCount + 1);
-              } else {
-                // Retry count exceeded, redirect to "/404"
-                r.push("/404");
-              }
-            }
-            setdataFirebase([]);
-          });
-  }, [retryCount, t, titulo]);
+            return null;
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data) {
+            setIsLoad(true);
+            setDataPosts(data);
+            setTitulo(data.titulo);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+          if (retryCount < MAX_RETRIES) {
+            setRetryCount(retryCount + 1);
+          } else {
+            setIsLoad(true);
+            router.push("/404");
+          }
+        });
+    }
+  }, [t, retryCount, isLoad, router]);
 
   return (
     <main className={`flex flex-col w-full`}>
@@ -64,16 +65,16 @@ export default function Projetos() {
       </Head>
       <TopBar state={[false, false, false]} />
       <div className="flex flex-col w-11/12 m-auto mb-5">
-        {!dataFirebase ? (
+        {!isLoad ? (
           <div className="flex items-center justify-center m-auto my-40">
             <div className="animate-spin rounded-full border-t-4 border-green-300 border-opacity-50 h-12 w-12"></div>
           </div>
         ) : (
-          <div className="  m-auto prose prose-2xl xl:prose-xl lg:prose-lg md:prose-base sm:prose-sm w-full">
+          <div className="m-auto prose prose-2xl xl:prose-xl lg:prose-lg md:prose-base sm:prose-sm w-full">
             <h1 className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">
-              {dataFirebase["title"]}
+              {dataPosts?.titulo}
             </h1>
-            <Markdown>{dataFirebase["text"]}</Markdown>
+            <Markdown>{dataPosts?.conteudo}</Markdown>
           </div>
         )}
       </div>

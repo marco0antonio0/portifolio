@@ -7,42 +7,41 @@ import EstadoGlobal from "@/models/global";
 import GridTemp from "@/components/gridTemplate";
 import Head from "next/head";
 import GridTempMainProjects from "@/components/gridTemplate-main-projects";
-import { getPostByMain, getPosts } from "@/services/post";
-import GridItensPostagens from "@/components/gridItensPostagens";
 
 export default function Home() {
-  const [dataFirebase, setdataFirebase] = useState([]);
-  const [dataFirebaseInfos, setdataFirebaseInfos] = useState([]);
-  const [dataMainProjects, setdataMainProjects] = useState();
+  const [dataDestaque, setdataDestaque] = useState([])
+  const [dataPosts, setdataPosts] = useState([])
+  const [isLoad, setload] = useState(false)
+  // 
   const [btnstate, setbtnstate] = useState(false);
-  useEffect(() => {
-    dataFirebase.length
-      ? null
-      : getPosts("post")
-          .then((e) => {
-            setdataFirebase(e);
-          })
-          .catch((e) => setdataFirebase([]));
-  }, [dataFirebase]);
-  useEffect(() => {
-    dataFirebaseInfos.length
-      ? null
-      : getPosts("informativo")
-          .then((e) => {
-            setdataFirebaseInfos(e);
-          })
-          .catch((e) => setdataFirebaseInfos([]));
-  }, [dataFirebaseInfos]);
 
+  function removeUndefinedFields(arr) {
+    return arr.filter(item => item !== undefined);
+  }
   useEffect(() => {
-    dataMainProjects
-      ? null
-      : getPostByMain()
-          .then((e) => {
-            setdataMainProjects(e);
-          })
-          .catch((e) => setdataMainProjects([]));
-  }, [dataFirebase]);
+    isLoad ? null : fetch('https://portfolio-api.dirrocha.com/posts', { method: "GET" }).then((e) => {
+      if (e.status == 404 || e.status != 200) {
+        setload(true)
+        return []
+      }
+      return e.json()
+    }).then((e) => {
+      var temp = []
+      temp = e.map((i) => {
+        if (i['destaque']) {
+          return i
+        }
+      })
+      setdataDestaque(removeUndefinedFields(temp))
+      setdataPosts(e)
+      setload(true)
+    })
+
+  }, [dataDestaque, dataPosts])
+
+
+
+
 
   return (
     <main className={`flex flex-col w-full`}>
@@ -64,24 +63,20 @@ export default function Home() {
         <EstadoGlobal.Provider value={{ btnstate, setbtnstate }}>
           <Carrosel />
           {!btnstate ? null : <Sobre />}
-          {dataMainProjects ? (
+          {dataDestaque ? (
             <GridTempMainProjects
-              titulo={dataMainProjects["title"]}
+              titulo={"Destaques de Projetos 🔥🔥"}
               subtitulo={"Principais projetos de marco"}
-              data={dataMainProjects["text"]}
+              data={dataDestaque}
             />
           ) : (
             <div className="flex items-center justify-center m-auto  my-16">
               <div className="animate-spin rounded-full border-t-4 border-green-300 border-opacity-50 h-12 w-12"></div>
             </div>
           )}
-          <GridItens data={dataFirebase} state={false} fn={() => {}} />
+          <GridItens data={dataPosts} state={false} fn={() => { }} />
 
-          <GridItensPostagens
-            data={dataFirebaseInfos}
-            state={false}
-            fn={() => {}}
-          />
+
           <GridTemp
             titulo={"Meus frameworks"}
             subtitulo={"Principais Frameworks utilizados em projetos de marco"}
@@ -107,8 +102,3 @@ export default function Home() {
     </main>
   );
 }
-
-// const usersRef = query(
-//   ref(db, `post`),
-//   ...[orderByChild("title"), equalTo(key)]
-// );

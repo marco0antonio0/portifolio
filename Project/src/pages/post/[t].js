@@ -7,7 +7,6 @@ import { getPostByKey } from "@/services/post";
 const MAX_RETRIES = 5;
 
 export default function Post() {
-  const [data, setdata] = useState([]);
   const [dataFirebase, setdataFirebase] = useState([]);
   const [titulo, settitulo] = useState("");
   const [desc, setdesc] = useState("");
@@ -19,34 +18,34 @@ export default function Post() {
     dataFirebase.length
       ? null
       : getPostByKey(t, { prefix: "informativo" })
-          .then((e) => {
-            if (typeof e == "undefined") {
-              if (retryCount < MAX_RETRIES) {
-                // Increment retry count and try again
-                setRetryCount(retryCount + 1);
-              } else {
-                // Retry count exceeded, redirect to "/404"
-                r.push("/404");
-              }
+        .then((e) => {
+          if (typeof e == "undefined") {
+            if (retryCount < MAX_RETRIES) {
+              // Increment retry count and try again
+              setRetryCount(retryCount + 1);
             } else {
-              setRetryCount(0);
-              settitulo(e.title);
-              setdesc(e.text);
-              setdataFirebase(e);
+              // Retry count exceeded, redirect to "/404"
+              r.push("/404");
             }
-          })
-          .catch((e) => {
-            if (typeof e == "undefined" || e == null) {
-              if (retryCount < MAX_RETRIES) {
-                // Increment retry count and try again
-                setRetryCount(retryCount + 1);
-              } else {
-                // Retry count exceeded, redirect to "/404"
-                r.push("/404");
-              }
+          } else {
+            setRetryCount(0);
+            settitulo(e.title);
+            setdesc(e.text);
+            setdataFirebase(e);
+          }
+        })
+        .catch((e) => {
+          if (typeof e == "undefined" || e == null) {
+            if (retryCount < MAX_RETRIES) {
+              // Increment retry count and try again
+              setRetryCount(retryCount + 1);
+            } else {
+              // Retry count exceeded, redirect to "/404"
+              r.push("/404");
             }
-            setdataFirebase([]);
-          });
+          }
+          setdataFirebase([]);
+        });
   }, [retryCount, t, titulo, desc]);
 
   return (

@@ -18,14 +18,14 @@ export default function GridItens({
         desenvolvidos por marco
       </span>
       <div className=" w-8/12 justify-center sm:justify-start  m-auto flex flex-row flex-wrap content-between items-stretch align-middle md:w-10/12 sm:w-full">
-        {!data.length ? (
+        {!data.length > 0 ? (
           <div className="flex items-center justify-center m-auto my-20 mt-5">
             <div className="animate-spin rounded-full border-t-4 border-green-300 border-opacity-50 h-12 w-12"></div>
           </div>
         ) : (
           data.map((e, i) => {
             if (i < count) {
-              return <Item key={i} nome={e["title"]} id={e["title"]} />;
+              return <Item key={i} nome={e["titulo"]} id={e["id"]} />;
             }
           })
         )}
@@ -38,14 +38,13 @@ export default function GridItens({
             !state
               ? r.push("/projeto")
               : setcount((e) => {
-                  let isntance = e;
-                  isntance += 3;
-                  return isntance;
-                });
+                let isntance = e;
+                isntance += 3;
+                return isntance;
+              });
           }}
-          className={`${
-            count >= data.length ? "opacity-10" : "opacity-80"
-          }  bg-redP h-full flex m-auto cursor-pointer select-none active:scale-[1.05]  shadow-lg  sml:w-40 `}
+          className={`${count >= data.length ? "opacity-10" : "opacity-80"
+            }  bg-redP h-full flex m-auto cursor-pointer select-none active:scale-[1.05]  shadow-lg  sml:w-40 `}
         >
           <span className="px-16 m-auto md:px-12 sml:px-0 ">{btnText}</span>
         </div>
@@ -59,7 +58,7 @@ function Item({ nome, id }) {
     <>
       <div
         onClick={() => {
-          r.push("/projeto/" + id);
+          r.push("/projeto/" + nome);
         }}
         className="w-72 h-auto bg-whitep flex flex-col content-end align-middle ml-5 mb-5 lg:w-5/12 shadow-lg active:scale-[1.05] cursor-pointer"
       >

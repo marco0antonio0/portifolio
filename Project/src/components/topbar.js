@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export default function TopBar({ state = [true, false, false, false] }) {
+export default function TopBar({ state = [true, false, false] }) {
   return (
     <>
       <div className="md:flex flex-col hidden">
@@ -37,14 +37,12 @@ function LayoutSmartphone({ state }) {
       </div>
       {/* ========================================================================= */}
       <div
-        className={`${
-          !MenuState ? "hidden" : "flex"
-        } rounded-lg flex-col bg-white shadow-md border-2 border-black border-opacity-5 w-auto align-middle absolute right-3 top-24 p-8 py-8 text-2xl gap-5`}
+        className={`${!MenuState ? "hidden" : "flex"
+          } rounded-lg flex-col bg-white shadow-md border-2 border-black border-opacity-5 w-auto align-middle absolute right-3 top-24 p-8 py-8 text-2xl gap-5`}
       >
         <button
-          className={`m-auto ml-0 cursor-pointer active:scale-[1.05] ${
-            !state[0] ? "opacity-50" : ""
-          }`}
+          className={`m-auto ml-0 cursor-pointer active:scale-[1.05] ${!state[0] ? "opacity-50" : ""
+            }`}
           onClick={() => {
             r.push("/");
           }}
@@ -52,29 +50,18 @@ function LayoutSmartphone({ state }) {
           <h1>inicio</h1>
         </button>
         <button
-          className={`m-auto ml-0 cursor-pointer active:scale-[1.05] ${
-            !state[1] ? "opacity-50" : ""
-          }`}
+          className={`m-auto ml-0 cursor-pointer active:scale-[1.05] ${!state[1] ? "opacity-50" : ""
+            }`}
           onClick={() => {
             r.push("/projeto");
           }}
         >
           <h1>projetos</h1>
         </button>
+
         <button
-          className={`m-auto ml-0 cursor-pointer active:scale-[1.05] ${
-            !state[2] ? "opacity-50" : ""
-          }`}
-          onClick={() => {
-            r.push("/post");
-          }}
-        >
-          <h1>posts</h1>
-        </button>
-        <button
-          className={`m-auto ml-0 cursor-pointer active:scale-[1.05] ${
-            !state[3] ? "opacity-50" : ""
-          }`}
+          className={`m-auto ml-0 cursor-pointer active:scale-[1.05] ${!state[3] ? "opacity-50" : ""
+            }`}
           onClick={() => {
             r.push("https://wa.me/5591984837847");
           }}
@@ -97,9 +84,8 @@ function LayoutDesktop({ state }) {
         />
         <div className="flex flex-row text-2xl font-medium w-[500px] pt-5 m-auto ml-72 lg:ml-20 ">
           <button
-            className={`m-auto cursor-pointer active:scale-[1.05] ${
-              !state[0] ? "opacity-50" : ""
-            }`}
+            className={`m-auto cursor-pointer active:scale-[1.05] ${!state[0] ? "opacity-50" : ""
+              }`}
             onClick={() => {
               r.push("/");
             }}
@@ -107,9 +93,8 @@ function LayoutDesktop({ state }) {
             <h1>inicio</h1>
           </button>
           <button
-            className={`m-auto cursor-pointer active:scale-[1.05] ${
-              !state[1] ? "opacity-50" : ""
-            }`}
+            className={`m-auto cursor-pointer active:scale-[1.05] ${!state[1] ? "opacity-50" : ""
+              }`}
             onClick={() => {
               r.push("/projeto");
             }}
@@ -117,19 +102,8 @@ function LayoutDesktop({ state }) {
             <h1>projetos</h1>
           </button>
           <button
-            className={`m-auto cursor-pointer active:scale-[1.05] ${
-              !state[2] ? "opacity-50" : ""
-            }`}
-            onClick={() => {
-              r.push("/post");
-            }}
-          >
-            <h1>posts</h1>
-          </button>
-          <button
-            className={`m-auto cursor-pointer active:scale-[1.05] ${
-              !state[3] ? "opacity-50" : ""
-            }`}
+            className={`m-auto cursor-pointer active:scale-[1.05] ${!state[3] ? "opacity-50" : ""
+              }`}
             onClick={() => {
               r.push("https://wa.me/5591984837847");
             }}
